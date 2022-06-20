@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 )
 
@@ -14,6 +13,6 @@ func main() {
 
 	ctest := getCommonColors(img, 5)
 
-	fmt.Println(hexListToColorList(ctest))
+	createCommonColorImage(hexListToColorList(ctest))
 
 }
