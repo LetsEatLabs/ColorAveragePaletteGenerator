@@ -2,7 +2,10 @@ module letseatlabs/ImageDisplay
 
 go 1.18
 
-require github.com/EdlinOrg/prominentcolor v1.0.0
+require (
+	github.com/EdlinOrg/prominentcolor v1.0.0
+	gopkg.in/go-playground/colors.v1 v1.2.0
+)
 
 require (
 	github.com/lucasb-eyer/go-colorful v1.2.0 // indirect

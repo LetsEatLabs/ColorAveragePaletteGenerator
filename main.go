@@ -6,12 +6,14 @@ import (
 )
 
 func main() {
-	img, err := loadImage("47b38cfdf64fa9d8.png")
+	img, err := loadImage("images/47b38cfdf64fa9d8.png")
 
 	if err != nil {
-		log.Fatal("Unable to load image!, err")
+		log.Fatal("Unable to load image!", err)
 	}
 
-	fmt.Println(getCommonColors(img, 5))
-	fmt.Println(getCommonColors(img, 7))
+	ctest := getCommonColors(img, 5)
+
+	fmt.Println(hexListToColorList(ctest))
+
 }
