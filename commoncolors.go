@@ -13,24 +13,23 @@ import (
 	"github.com/EdlinOrg/prominentcolor"
 )
 
-func main() {
+func getCommonColors(img image.Image, k int) []string {
 
-	// Step 1: Load the image
-	img, err := loadImage(os.Args[1])
-	if err != nil {
-		log.Fatal(fmt.Sprintf("Failed to load image, %s\n", os.Args[1]), err)
-	}
+	colours, err := prominentcolor.KmeansWithAll(k, img, prominentcolor.ArgumentAverageMean|prominentcolor.ArgumentNoCropping,
+		prominentcolor.DefaultSize,
+		prominentcolor.GetDefaultMasks())
 
-	// Step 2: Process it
-	colours, err := prominentcolor.Kmeans(img)
 	if err != nil {
 		log.Fatal("Failed to process image", err)
 	}
 
-	fmt.Println("Dominant colours:")
+	var dom_colours []string
+
 	for _, colour := range colours {
-		fmt.Println("#" + colour.AsString())
+		dom_colours = append(dom_colours, fmt.Sprintf("#%s", colour.AsString()))
 	}
+
+	return dom_colours
 }
 
 func loadImage(fileInput string) (image.Image, error) {
