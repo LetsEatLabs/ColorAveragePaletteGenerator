@@ -1,20 +1,27 @@
 package main
 
 import (
+	"fmt"
 	"log"
 )
 
+// Consts
+const SAVE_DIR = "./averages/"
+const LOAD_DIR = "./images/"
+
 func main() {
-	img, err := loadImage("images/47b38cfdf64fa9d8.png")
 
-	if err != nil {
-		log.Fatal("Unable to load image!", err)
+	targetimages := getAllTargetImages(LOAD_DIR)
+
+	for im := range targetimages {
+
+		img, err := loadImage(fmt.Sprintf("%s%s", LOAD_DIR, targetimages[im]))
+
+		if err != nil {
+			log.Fatal("Unable to load image!", err)
+		}
+		meancols := getCommonColorsMean(img, 5)
+		createCommonColorImage(hexListToColorList(meancols), fmt.Sprintf("%s%s.average.png", SAVE_DIR, targetimages[im]))
 	}
-
-	meancols := getCommonColorsMean(img, 5)
-	mediancols := getCommonColorsMedian(img, 5)
-
-	createCommonColorImage(hexListToColorList(meancols), "mean.png")
-	createCommonColorImage(hexListToColorList(mediancols), "median.png")
 
 }

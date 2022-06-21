@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"image"
 	"image/png"
+	"io/ioutil"
 	"log"
 	"os"
 
@@ -15,40 +16,55 @@ import (
 
 func getCommonColorsMean(img image.Image, k int) []string {
 
-	colours, err := prominentcolor.KmeansWithAll(k, img, prominentcolor.ArgumentAverageMean|prominentcolor.ArgumentNoCropping,
-		prominentcolor.DefaultSize,
+	cols, err := prominentcolor.KmeansWithAll(k, img, prominentcolor.ArgumentAverageMean|prominentcolor.ArgumentNoCropping,
+		255,
 		prominentcolor.GetDefaultMasks())
 
 	if err != nil {
 		log.Fatal("Failed to process image", err)
 	}
 
-	var dom_colours []string
+	var dom_cols []string
 
-	for _, colour := range colours {
-		dom_colours = append(dom_colours, fmt.Sprintf("#%s", colour.AsString()))
+	for _, colour := range cols {
+		dom_cols = append(dom_cols, fmt.Sprintf("#%s", colour.AsString()))
 	}
 
-	return dom_colours
+	return dom_cols
 }
 
 func getCommonColorsMedian(img image.Image, k int) []string {
 
-	colours, err := prominentcolor.KmeansWithAll(k, img, prominentcolor.ArgumentNoCropping,
-		prominentcolor.DefaultSize,
+	cols, err := prominentcolor.KmeansWithAll(k, img, prominentcolor.ArgumentNoCropping,
+		255,
 		prominentcolor.GetDefaultMasks())
 
 	if err != nil {
 		log.Fatal("Failed to process image", err)
 	}
 
-	var dom_colours []string
+	var dom_cols []string
 
-	for _, colour := range colours {
-		dom_colours = append(dom_colours, fmt.Sprintf("#%s", colour.AsString()))
+	for _, colour := range cols {
+		dom_cols = append(dom_cols, fmt.Sprintf("#%s", colour.AsString()))
 	}
 
-	return dom_colours
+	return dom_cols
+}
+
+func getAllTargetImages(dirpath string) []string {
+	var targetimages []string
+
+	files, err := ioutil.ReadDir("./images")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for _, f := range files {
+		targetimages = append(targetimages, f.Name())
+	}
+
+	return targetimages
 }
 
 func loadImage(fileInput string) (image.Image, error) {

@@ -1,13 +1,26 @@
 # Summary
-This program currently generated two versions of the most common 5 colors (mean, median) in an image and crates a PNG containing those colors.
+This program currently generates the mean average of the most common 5 colors in an image and creates a PNG containing those colors.
+
+## Notes
+You will need subdirectories after you clone - one named `images` that hosts your target images, and one named `averages` where the averages will be stored.
 
 ## Example:
 
 #### Sample Image
-!["./example_image.png"](./example_image.png)
+!["./examples/example_image.png"](./examples/example_image.png)
 
 #### Mean average of colors
-!["./mean.png"](./mean.png)
+!["./examples/mean.png"](./examples/mean_example.png)
 
-#### Median average of colors
-!["./median.png"](./median.png)
+#### Sample Image
+!["./examples/DSC_0044.png"](./examples/DSC_0044.png)
+
+#### Mean average of colors
+!["./examples/DSC_0044.average.png"](./examples/DSC_0044.average.png)
+
+#### Sample Image
+!["./examples/DSC_0044.png"](./examples/DSC_0117.png)
+
+#### Mean average of colors
+!["./examples/DSC_0044.average.png"](./examples/DSC_0117.average.png)
+
