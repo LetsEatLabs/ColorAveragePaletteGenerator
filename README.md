@@ -19,7 +19,7 @@ You will need subdirectories after you clone - one named `images` that hosts you
 !["./examples/DSC_0044.average.png"](./examples/DSC_0044.average.png)
 
 #### Sample Image
-!["./examples/DSC_0044.png"](./examples/DSC_0117.png.average.png)
+!["./examples/DSC_0117.png.average.png"](./examples/DSC_0117.png)
 
 #### Mean average of colors
 !["./examples/DSC_0044.average.png"](./examples/DSC_011.png.average.png)
