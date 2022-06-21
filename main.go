@@ -11,8 +11,10 @@ func main() {
 		log.Fatal("Unable to load image!", err)
 	}
 
-	ctest := getCommonColors(img, 5)
+	meancols := getCommonColorsMean(img, 5)
+	mediancols := getCommonColorsMedian(img, 5)
 
-	createCommonColorImage(hexListToColorList(ctest))
+	createCommonColorImage(hexListToColorList(meancols), "mean.png")
+	createCommonColorImage(hexListToColorList(mediancols), "median.png")
 
 }

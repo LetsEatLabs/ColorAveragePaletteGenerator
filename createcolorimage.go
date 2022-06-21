@@ -25,7 +25,7 @@ func hexListToColorList(cols []string) []*colors.RGBColor {
 	return rgbs
 }
 
-func createCommonColorImage(cols []*colors.RGBColor) {
+func createCommonColorImage(cols []*colors.RGBColor, filename string) {
 
 	height := 500
 	width := 200
@@ -48,6 +48,6 @@ func createCommonColorImage(cols []*colors.RGBColor) {
 	}
 
 	// Encode as PNG.
-	f, _ := os.Create("image.png")
+	f, _ := os.Create(filename)
 	png.Encode(f, img)
 }

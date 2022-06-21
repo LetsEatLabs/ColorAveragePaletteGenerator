@@ -13,9 +13,28 @@ import (
 	"github.com/EdlinOrg/prominentcolor"
 )
 
-func getCommonColors(img image.Image, k int) []string {
+func getCommonColorsMean(img image.Image, k int) []string {
 
 	colours, err := prominentcolor.KmeansWithAll(k, img, prominentcolor.ArgumentAverageMean|prominentcolor.ArgumentNoCropping,
+		prominentcolor.DefaultSize,
+		prominentcolor.GetDefaultMasks())
+
+	if err != nil {
+		log.Fatal("Failed to process image", err)
+	}
+
+	var dom_colours []string
+
+	for _, colour := range colours {
+		dom_colours = append(dom_colours, fmt.Sprintf("#%s", colour.AsString()))
+	}
+
+	return dom_colours
+}
+
+func getCommonColorsMedian(img image.Image, k int) []string {
+
+	colours, err := prominentcolor.KmeansWithAll(k, img, prominentcolor.ArgumentNoCropping,
 		prominentcolor.DefaultSize,
 		prominentcolor.GetDefaultMasks())
 
